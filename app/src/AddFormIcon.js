@@ -1,11 +1,12 @@
 import React from "react";
 import UINavAddIcon from "./UIElements/UINavAddIcon";
-import NewVitals from "./Forms/Vitals/VitalsForm";
+import VitalsForm from "./Forms/Vitals/VitalsForm";
 import UIStore from "./UIElements/UIStore";
 import UIFormDialog from "./UIElements/UIFormDialog";
 import { observer } from "mobx-react";
 import OrderForm from "./Forms/Orders/OrderForm";
 import ApptForm from "./Forms/Appts/ApptForm";
+import AddPatientRecordForm from "./AddPatientRecordForm";
 
 class AddFormIcon extends React.Component {
   constructor(props) {
@@ -28,8 +29,12 @@ class AddFormIcon extends React.Component {
         title: "New Order",
         parentOnClick: this.store.orderUIStore.toggleFormDialog
       },
+      // {
+      //   title: "New Appointment",
+      //   parentOnClick: this.store.appointmentUIStore.toggleFormDialog
+      // },
       {
-        title: "New Appointment",
+        title: "Render Prop",
         parentOnClick: this.store.appointmentUIStore.toggleFormDialog
       }
     ];
@@ -37,7 +42,7 @@ class AddFormIcon extends React.Component {
 
   createVitals = () => {
     return (
-      <NewVitals
+      <VitalsForm
         parentCallBack={this.formCallBack}
         patient={this.props.patient}
       />
@@ -86,12 +91,19 @@ class AddFormIcon extends React.Component {
         />
 
         {/* Create Appointment Option */}
-        <UIFormDialog
+        {/* <UIFormDialog
           open={this.store.appointmentUIStore.showFormDialog}
           toggleDialog={this.store.appointmentUIStore.toggleFormDialog}
           title="New Appointment"
           viewPage={() => this.createAppointment()}
-        />
+        /> */}
+
+       
+         <AddPatientRecordForm render={({ title }) => (
+          // The render prop gives us the state we need
+          // to render whatever we want here.
+          <h1>{title}</h1>
+        )}/>
       </div>
     );
   }

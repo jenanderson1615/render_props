@@ -12,10 +12,10 @@ class AddFormIcon extends React.Component {
   constructor(props) {
     super(props);
     this.store = {
-      vitalsUIStore: UIStore.create(),
-      orderUIStore: UIStore.create(),
-      appointmentUIStore: UIStore.create(),
-      newPatientUIStore: UIStore.create()
+      vitalsUIStore: new UIStore(),
+      orderUIStore: new UIStore(),
+      appointmentUIStore: new UIStore(),
+      newPatientUIStore: new UIStore()
     };
   }
 
@@ -28,14 +28,6 @@ class AddFormIcon extends React.Component {
       {
         title: "New Order",
         parentOnClick: this.store.orderUIStore.toggleFormDialog
-      },
-      // {
-      //   title: "New Appointment",
-      //   parentOnClick: this.store.appointmentUIStore.toggleFormDialog
-      // },
-      {
-        title: "Render Prop",
-        parentOnClick: this.store.appointmentUIStore.toggleFormDialog
       }
     ];
   }
@@ -89,15 +81,6 @@ class AddFormIcon extends React.Component {
           title="New Order"
           viewPage={() => this.createOrder()}
         />
-
-        {/* Create Appointment Option */}
-        {/* <UIFormDialog
-          open={this.store.appointmentUIStore.showFormDialog}
-          toggleDialog={this.store.appointmentUIStore.toggleFormDialog}
-          title="New Appointment"
-          viewPage={() => this.createAppointment()}
-        /> */}
-
        
          <AddPatientRecordForm render={({ title }) => (
           // The render prop gives us the state we need

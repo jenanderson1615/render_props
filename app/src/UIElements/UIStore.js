@@ -1,14 +1,19 @@
-import { types } from 'mobx-state-tree';
+import { extendObservable } from "mobx";
 
-const UIStore = types
-  .model('UIStore', {
-    showFormDialog: false
-  })
+class UIStore {
+  /**
+   * @var { bool } showFormDialog - flag for show/hide ui dialog
+   * */
 
-  .actions(self => ({
-    toggleFormDialog() {
-      self.showFormDialog = !self.showFormDialog;
-    }
-  }))
+  constructor() {
+    extendObservable(this, {
+      showFormDialog: false,
+
+      toggleFormDialog:() => {
+        this.showFormDialog = !this.showFormDialog;
+      }
+    });
+  }
+}
 
 export default UIStore;

@@ -1,6 +1,6 @@
 import { extendObservable } from "mobx";
 
-class UIStore {
+class Store {
   /**
    * @var { bool } showFormDialog - flag for show/hide ui dialog
    * */
@@ -16,4 +16,5 @@ class UIStore {
   }
 }
 
+const UIStore = new Store();
 export default UIStore;
